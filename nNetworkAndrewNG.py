@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import optimize
-from sklearn import cross_validation
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from scipy.io import loadmat
 
@@ -122,6 +122,7 @@ class NN_MLstanford(object):
         _, _, _, _, h = self._forward(X, self.t1, self.t2)
         return h.T
 
+### START SCRIPT
 # Visualize a part of data
 import displayData
 print('Data visualization')
@@ -135,7 +136,7 @@ y = y.reshape(X.shape[0], )
 y = y - 1
 
 # Split data into train and test sets
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.4)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
 # Train neural network using train set, then predict on test set
 nn = NN_MLstanford(maxiter=200)
